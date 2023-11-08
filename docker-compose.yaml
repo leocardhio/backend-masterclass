@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  masterclass-db:
+    build: .
+    container_name: masterclass-db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD_FILE=/secrets/postgres-pwd
+      - POSTGRES_DB=masterclass
