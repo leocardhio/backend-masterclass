@@ -1,0 +1,21 @@
+postgres-pwd := $(shell cat secrets/postgres-pwd)
+
+createdb:
+	docker exec -it masterclass-db createdb -U postgres --username=postgres --owner=postgres masterclass
+
+dropdb:
+	docker exec -it masterclass-db dropdb -U postgres masterclass
+
+migrateup:
+	migrate -path db/migration -database "postgresql://postgres:$(postgres-pwd)@localhost:5432/masterclass?sslmode=disable" -verbose up
+
+migratedown:
+	migrate -path db/migration -database "postgresql://postgres:$(postgres-pwd)@localhost:5432/masterclass?sslmode=disable" -verbose down
+
+sqlc:
+	sqlc generate
+
+test:
+	go test -v -cover ./...
+
+.PHONY: createdb dropdb migrateup migratedown sqlc test
