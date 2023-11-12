@@ -18,7 +18,7 @@ var testQueries *Queries
 var testStore *Store
 
 func TestMain(m *testing.M) {
-	dbSource := fmt.Sprintf("postgresql://postgres:%s@localhost:5432/masterclass?sslmode=disable", AccessSecretFile("postgres-pwd"))
+	dbSource := "postgresql://postgres:secretforgithubaction@localhost:5432/masterclass?sslmode=disable"
 
 	testDB, err := sql.Open(dbDriver, dbSource)
 	if err != nil {
