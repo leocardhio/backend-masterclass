@@ -1,4 +1,4 @@
-postgres-pwd := $(shell cat secrets/postgres-pwd)
+postgres-pwd := secretforgithubaction
 
 createdb:
 	docker exec -it masterclass-db createdb -U postgres --username=postgres --owner=postgres masterclass
