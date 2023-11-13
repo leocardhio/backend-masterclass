@@ -22,6 +22,7 @@ func TestMain(m *testing.M) {
 	args = util.DeclareFlag()
 	flag.Parse()
 
+	fmt.Printf("Running on %s environment\n", *args.Env)
 	config, err := util.LoadConfig("../..", *args.Env)
 	if err != nil {
 		log.Fatal("cannot load config:", err)
