@@ -16,7 +16,7 @@ sqlc:
 	sqlc generate
 
 test:
-	go test -v -cover ./...
+	go test -v -cover ./... -env=$(env)
 
 server:
 	go run main.go -env=$(env)

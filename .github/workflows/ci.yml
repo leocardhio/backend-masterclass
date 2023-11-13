@@ -48,4 +48,4 @@ jobs:
       run: make migrateup postgres-pwd=secretforgithubaction
 
     - name: Test
-      run: make test -env=test
+      run: make test env=test
