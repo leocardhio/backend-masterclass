@@ -45,7 +45,7 @@ jobs:
 
 
     - name: Run migration
-      run: make -f makefile.test migrateup
+      run: make migrateup postgres-pwd=secretforgithubaction
 
     - name: Test
-      run: make -f makefile.test test
+      run: make test -env=test

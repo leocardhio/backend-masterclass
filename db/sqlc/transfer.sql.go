@@ -83,7 +83,7 @@ func (q *Queries) GetTransfers(ctx context.Context, arg GetTransfersParams) ([]T
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Transfer
+	items := []Transfer{}
 	for rows.Next() {
 		var i Transfer
 		if err := rows.Scan(
@@ -125,7 +125,7 @@ func (q *Queries) GetTransfersByReceiverId(ctx context.Context, arg GetTransfers
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Transfer
+	items := []Transfer{}
 	for rows.Next() {
 		var i Transfer
 		if err := rows.Scan(
@@ -167,7 +167,7 @@ func (q *Queries) GetTransfersBySenderId(ctx context.Context, arg GetTransfersBy
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Transfer
+	items := []Transfer{}
 	for rows.Next() {
 		var i Transfer
 		if err := rows.Scan(

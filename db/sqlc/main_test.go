@@ -2,25 +2,34 @@ package db
 
 import (
 	"database/sql"
+	"flag"
 	"fmt"
 	"log"
+	"masterclass/util"
 	"os"
 	"testing"
 
 	_ "github.com/lib/pq"
 )
 
-const (
-	dbDriver = "postgres"
+var (
+	args        util.FlagArgs
+	testQueries *Queries
+	testStore   *Store
 )
 
-var testQueries *Queries
-var testStore *Store
-
 func TestMain(m *testing.M) {
-	dbSource := "postgresql://postgres:secretforgithubaction@localhost:5432/masterclass?sslmode=disable"
+	args = util.DeclareFlag()
+	flag.Parse()
 
-	testDB, err := sql.Open(dbDriver, dbSource)
+	config, err := util.LoadConfig("../..", *args.Env)
+	if err != nil {
+		log.Fatal("cannot load config:", err)
+	}
+
+	dbSource := fmt.Sprintf("postgresql://postgres:%s@localhost:5432/masterclass?sslmode=disable", config.DBPassword)
+
+	testDB, err := sql.Open(config.DBDriver, dbSource)
 	if err != nil {
 		log.Fatal("cannot connect to db:", err.Error())
 	}
@@ -29,14 +38,4 @@ func TestMain(m *testing.M) {
 	testStore = NewStore(testDB)
 
 	os.Exit(m.Run())
-}
-
-func AccessSecretFile(filename string) string {
-	path := fmt.Sprintf("../../secrets/%s", filename)
-	file, err := os.ReadFile(path)
-	if err != nil {
-		log.Fatalf(">> secret: %s", err.Error())
-	}
-
-	return string(file)
 }

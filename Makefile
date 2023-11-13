@@ -1,4 +1,4 @@
-postgres-pwd := secretforgithubaction
+postgres-pwd := $(shell cat secrets/postgres-pwd)
 
 createdb:
 	docker exec -it masterclass-db createdb -U postgres --username=postgres --owner=postgres masterclass
@@ -17,5 +17,8 @@ sqlc:
 
 test:
 	go test -v -cover ./...
+
+server:
+	go run main.go -env=$(env)
 
 .PHONY: createdb dropdb migrateup migratedown sqlc test
