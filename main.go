@@ -5,9 +5,10 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"masterclass/api"
-	db "masterclass/db/sqlc"
-	"masterclass/util"
+
+	"github.com/leocardhio/masterclass/api"
+	db "github.com/leocardhio/masterclass/db/sqlc"
+	"github.com/leocardhio/masterclass/util"
 
 	_ "github.com/lib/pq"
 )

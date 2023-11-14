@@ -3,9 +3,10 @@ package db
 import (
 	"context"
 	"database/sql"
-	"masterclass/util"
 	"testing"
 	"time"
+
+	"github.com/leocardhio/masterclass/util"
 
 	"github.com/stretchr/testify/require"
 )

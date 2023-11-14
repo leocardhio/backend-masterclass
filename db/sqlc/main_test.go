@@ -5,9 +5,10 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"masterclass/util"
 	"os"
 	"testing"
+
+	"github.com/leocardhio/masterclass/util"
 
 	_ "github.com/lib/pq"
 )
@@ -15,7 +16,7 @@ import (
 var (
 	args        util.FlagArgs
 	testQueries *Queries
-	testStore   *Store
+	testStore   Store
 )
 
 func TestMain(m *testing.M) {

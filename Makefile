@@ -21,4 +21,7 @@ test:
 server:
 	go run main.go -env=$(env)
 
-.PHONY: createdb dropdb migrateup migratedown sqlc test
+mock:
+	 mockgen -package mockdb -destination db/mock/store.go github.com/leocardhio/masterclass/db/sqlc Store
+
+.PHONY: createdb dropdb migrateup migratedown sqlc test mock

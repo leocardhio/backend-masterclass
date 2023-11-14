@@ -2,8 +2,9 @@ package api
 
 import (
 	"database/sql"
-	db "masterclass/db/sqlc"
 	"net/http"
+
+	db "github.com/leocardhio/masterclass/db/sqlc"
 
 	"github.com/gin-gonic/gin"
 )
